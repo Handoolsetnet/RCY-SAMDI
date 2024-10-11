@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <html lang="ko">
+    <title>카페인 권장 섭취량 계산기</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+
+        @font-face {
+            font-family: 'Binggrae';
+            src: local('Binggrae'),
+            url('Binggrae.ttf') format('truetype')
+            
+        }
+        .Binggraef{
+            font-family: 'Binggrae';
+        }
+        .jua-font{
+            font-family: 'Jua', sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        
+        .noto-sans {
+            font-family: "Noto Sans KR", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            vertical-align: top;
+            justify-content: top;
+            height: 200vh;
+            overflow-y: scroll;
+        }
+
+        button {
+            width: 180px;
+            height: 35px;
+            font-size: 16spx;
+            border-radius: 5px;
+            text-align: center;
+            
+        }
+
+         
+                   
+         .category button {
+            background-image: linear-gradient(to right, #457fca 0%, #5691c8  51%, #457fca  100%);
+            margin: 10px;
+            padding: 15px 45px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;            
+            box-shadow: 0 0 20px #eee;
+            border-radius: 10px;
+            display: block;
+          }
+
+          .category button:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+         
+
+        #weightInput {
+            width: 170px;
+            height: 25px;
+        }
+
+        .category {
+            margin-bottom: 10px;
+        }
+        .category button {
+            padding: 5px 20px;
+            margin: 5px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .info {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            display: none;
+        }
+        .info h3 {
+            margin-top: 0;
+        }
+
+        .divider {
+            width: 100%;
+            border-top: 2px #ccc;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        th {
+            background-image: linear-gradient(to right, #E0EAFC 0%, #CFDEF3  51%, #E0EAFC  100%);
+        
+            color: rgb(55, 55, 80);
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .info {
+            display: none;
+        }
+
+        .content {
+            flex: 1;
+            overflow-y: auto; 
+        }
+        
+             
+                 
+    
+    </style>
+</head>
+<body>
+    <br><br>
+    <p><span style="border-radius: 5em; padding: 0.6em 2em; background: #F9F9F9; box-shadow: 1px 2px 10px rgba(0,0,0,0.2);  margin-left: 5px; align-items: center; font-size: 25px; font-weight: 600;"><a href="index.html" style="text-decoration: none; color: inherit;">✿RCY x SAMDI✿</a></span></p>
+    <h1><p class="Binggraef">⭐카페인 권장 섭취량 계산기⭐</p></h1>
+    <input type="number" id="weightInput" placeholder="체중을 입력하세요 (kg)"><br>
+    <button onclick="showWaterIntake()">카페인 권장량 보기</button>
+
+    <p id="intakeResult"></p>
+
+    <script>
+        function showWaterIntake() {
+            let weight = document.getElementById('weightInput').value;
+
+            if (weight === '') {
+                weight = 0;
+            }
+
+            const recommendedIntake = weight * 2.5;
+
+            document.getElementById('intakeResult').innerText = 
+            '카페인 권장 섭취량: ' + recommendedIntake + 'mg';
+        }
+
+        
+    </script>
+
+<div class="divider"></div>
+<h2><p class="Binggraef">카페인 함량&영양성분</p></h2>   
+
+    <div class="category">
+        <button onclick="showCategory('coffee')">커피</button>
+        <button onclick="showCategory('energy')">에너지 음료</button>
+        <button onclick="showCategory('tea')">차</button>
+    </div>
+
+    <!-- 커피 정보 -->
+    <div id="coffee" class="info">
+        <table>
+            <thead>
+                <tr>
+                    <th>음료명</th>
+                    <th>카페인 함량 (mg)</th>
+                    <th>칼로리 (kcal)</th>
+                    <th>당류 (g)</th>
+                    <th>나트륨 (mg)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>서울우유 커피우유(300ml)</td>
+                    <td>65</td>
+                    <td>190</td>
+                    <td>24</td>
+                    <td>120</td>
+                </tr>
+                <tr>
+                    <td>맥심 TOP 마스터 라떼(240ml)</td>
+                    <td>98</td>
+                    <td>109</td>
+                    <td>18</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>마다가스카르 바닐라빈 라떼(325ml)</td>
+                    <td>105</td>
+                    <td>210</td>
+                    <td>26</td>
+                    <td>170</td>
+                </tr>
+                <tr>
+                    <td>벨지엄 쇼콜라 모카(325ml)</td>
+                    <td>125</td>
+                    <td>240</td>
+                    <td>29</td>
+                    <td>180</td>
+                </tr>
+                <tr>
+                    <td>플라넬 드립 라떼(325ml)</td>
+                    <td>145</td>
+                    <td>170</td>
+                    <td>22</td>
+                    <td>150</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 에너지 음료 정보 -->
+    <div id="energy" class="info">
+        <table>
+            <thead>
+                <tr>
+                    <th>음료명</th>
+                    <th>카페인(mg)</th>
+                    <th>칼로리(kcal)</th>
+                    <th>당류(g)</th>
+                    <th>나트륨(mg)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>몬스터 에너지(355ml)</td>
+                    <td>100</td>
+                    <td>168</td>
+                    <td>41</td>
+                    <td>273</td>
+                </tr>
+                <tr>
+                    <td>몬스터 에너지 울트라(355ml)</td>
+                    <td>100</td>
+                    <td>11</td>
+                    <td>0</td>
+                    <td>275</td>
+                </tr>
+                <tr>
+                    <td>몬스터 에너지 울트라 시트라(355ml)</td>
+                    <td>100</td>
+                    <td>11</td>
+                    <td>0</td>
+                    <td>275</td>
+                </tr>
+                <tr>
+                    <td>몬스터 에너지 파이프라인 펀치(355ml)</td>
+                    <td>100</td>
+                    <td>132</td>
+                    <td>35</td>
+                    <td>56</td>
+                </tr>
+                <tr>
+                    <td>몬스터 망고 로코(355ml)</td>
+                    <td>100</td>
+                    <td>175</td>
+                    <td>40</td>
+                    <td>61</td>
+                </tr>
+                <tr>
+                    <td>몬스터 에너지 오지 스타일 레모네이드(355ml)</td>
+                    <td>100</td>
+                    <td>156</td>
+                    <td>34</td>
+                    <td>128</td>
+                </tr>
+                <tr>
+                    <td>핫식스 더 킹 제로(355ml)</td>
+                    <td>100</td>
+                    <td>10</td>
+                    <td>0</td>
+                    <td>120</td>
+                </tr>
+                <tr>
+                    <td>핫식스 더 킹 포스(355ml)</td>
+                    <td>100</td>
+                    <td>19</td>
+                    <td>1</td>
+                    <td>180</td>
+                </tr>
+                <tr>
+                    <td>핫식스 더 킹 러쉬(355ml)</td>
+                    <td>100</td>
+                    <td>15</td>
+                    <td>0</td>
+                    <td>90</td>
+                </tr>
+                <tr>
+                    <td>핫식스 더 킹 파워(355ml)</td>
+                    <td>100</td>
+                    <td>170</td>
+                    <td>42</td>
+                    <td>115</td>
+                </tr>
+                <tr>
+                    <td>레드불(250ml)</td>
+                    <td>62.5</td>
+                    <td>115</td>
+                    <td>27</td>
+                    <td>105</td>
+                </tr>
+                <tr>
+                    <td>박카스F(120ml)</td>
+                    <td>30</td>
+                    <td>70</td>
+                    <td>17</td>
+                    <td>5</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 차 정보 -->
+    <div id="tea" class="info">
+        <table>
+            <thead>
+                <tr>
+                    <th>음료명</th>
+                    <th>카페인 함량 (mg)</th>
+                    <th>칼로리 (kcal)</th>
+                    <th>당류 (g)</th>
+                    <th>나트륨 (mg)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>녹차(240ml)</td>
+                    <td>35</td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>홍차(240ml)</td>
+                    <td>88</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>우롱차(240ml)</td>
+                    <td>41</td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>7</td>
+                </tr>
+                <tr>
+                    <td>데자와(500ml)</td>
+                    <td>115</td>
+                    <td>95</td>
+                    <td>14</td>
+                    <td>85</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function showCategory(category) {
+            // 모든 카테고리 정보 숨기기
+            const infoDivs = document.querySelectorAll('.info');
+            infoDivs.forEach(div => div.style.display = 'none');
+
+            // 선택한 카테고리 정보 표시
+            const selectedCategory = document.getElementById(category);
+            if (selectedCategory) {
+                selectedCategory.style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
